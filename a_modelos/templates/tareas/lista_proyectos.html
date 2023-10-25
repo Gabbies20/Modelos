@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Proyectos</title>
+</head>
+<body>
+    <h1>Mis proyectos:</h1>
+    {% for proyecto in proyectos_mostrar %}
+        <div>
+            <ul>
+                <li type="circle">
+                    <h3>PROYECTO</h3>
+                    <h5>Nombre:</h5>{{ proyecto.nombre}}
+                    <h5>Descripción:</h5>{{ proyecto.descripcion }}
+                    <h5>Duración estimada:</h5>{{ proyecto.duracion_estimada }}
+                    <h5>Fecha de inicio:</h5>{{ proyecto.fecha_de_inicio }}
+                    <h5>Fecha de finalización:</h5>{{ proyecto.fecha_de_finalizacion }}
+                    <h5>Usuario creador:</h5>{{ proyecto.usuario_creador }}
+                    <h5>Usuarios</h5>
+                    {% for usuario in proyecto.usuario.all %}
+                        <ul>
+                            <li>
+                                {{ usuario.nombre }}
+                            </li>
+                        </ul>
+                    {% endfor%}
+                    <h5>Tareas</h5>
+                    {% for tarea in proyecto.tareas.all %}
+                        <ul>
+                            <li>
+                                {{ tarea.titulo }}
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+    {% endfor%}
+</body>
+</html>

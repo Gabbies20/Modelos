@@ -12,6 +12,21 @@ class Usuario(models.Model):
         return self.nombre    
     
     
+class Proyecto(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    duracion_estimada = models.FloatField()
+    fecha_de_inicio = models.DateField()
+    fecha_de_finalizacion = models.DateField()
+    usuario = models.ManyToManyField(Usuario,
+                                     related_name='usuario')
+    usuario_creador = models.ForeignKey(Usuario,
+                                        on_delete=models.CASCADE,
+                                        related_name="usuario_creador")
+
+    def __str__(self) -> str:
+        return self.nombre
+    
 class Tarea(models.Model):
     titulo = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -33,26 +48,11 @@ class Tarea(models.Model):
     usuarios_asignados = models.ManyToManyField(Usuario,
                                                 through='AsignacionTarea',
                                                 related_name="usuarios_asignados")
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+       
        
     def __str__(self) -> str:
         return self.titulo
-    
-class Proyecto(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    duracion_estimada = models.FloatField()
-    fecha_de_inicio = models.DateField()
-    fecha_de_finalizacion = models.DateField()
-    usuario = models.ManyToManyField(Usuario,
-                                     related_name='usuario')
-    usuario_creador = models.ForeignKey(Usuario,
-                                        on_delete=models.CASCADE,
-                                        related_name="usuario_creador")
-    tareas = models.ManyToManyField(Tarea)
-    
-    def __str__(self) -> str:
-        return self.nombre
-    
 
 class Etiqueta(models.Model):
     nombre = models.CharField(max_length=100,unique=True)
