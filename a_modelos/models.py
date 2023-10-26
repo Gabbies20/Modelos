@@ -74,7 +74,7 @@ class Comentario(models.Model):
     contenido = models.TextField()
     fecha_de_contenido = models.DateTimeField(default=timezone.now)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    tarea = models.ManyToManyField(Tarea)
+    tarea = models.ForeignKey(Tarea, on_delete=models.CASCADE)
     
     
     

@@ -9,6 +9,6 @@
     <h1>Enlace de todas las urls:</h1>
     <a href=" {% url 'lista_proyectos' %}">Lista de todos los proyectos</a>
     <br>
-    <a href=" {% url 'tareas_a_proyectos' %}">Lista de tareas asociadas a un proyecto</a>
+    <a href=" {% url 'tareas_a_proyectos' id_proyecto=5%}">Lista de tareas asociadas a un proyecto</a>
 </body>
 </html>

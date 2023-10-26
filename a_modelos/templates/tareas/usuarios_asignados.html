@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios asignados a tareas</title>
+</head>
+<body>
+   {% for usuario in mostrar_usuarios %}
+        <ul>
+            <li>
+                Usuarios:{{ usuario.usuario }}
+            </li>
+        </ul>
+   {% endfor %}
+</body>
+</html>
