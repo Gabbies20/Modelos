@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aplicación de Tareas</title>
+</head>
+<body>
+    <h1>Tareas con Texto en Observaciones</h1>
+
+    <ul>
+        {% for tarea_asignada in tareas_con_texto %}
+            <li>{{ tarea_asignada.tarea.titulo }}</li>
+            <!-- Agrega más detalles según sea necesario -->
+        {% endfor %}
+    </ul>
+</body>
+</html>

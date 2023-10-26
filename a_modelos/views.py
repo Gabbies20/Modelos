@@ -35,7 +35,8 @@ def usuarios_a_tareas(request, tarea_id):
 #Crear una URL que muestre todas las tareas que tengan un texto en concreto en las observaciones a la hora de asignarlas a un usuario.
 def tareas_t_concreto(request,texto):
     tarea = AsignacionTarea.objects.select_related('tarea','usuario')
-    tarea = tarea.filter(texto=)
+    tarea = tarea.filter(observaciones__icontains=texto)
+    return render(request,'tareas/tareas_texto.html',{'tareas_con_texto':tarea})
     
     
     

@@ -26,14 +26,32 @@
                             </li>
                         </ul>
                     {% endfor%}
-                    <h5>Tareas</h5>
-                    {% for tarea in proyecto.tareas.all %}
-                        <ul>
-                            <li>
-                                {{ tarea.titulo }}
-                            </li>
-                        </ul>
+                    <h5>Tareas:</h5>
+                <ul>
+                    {% for tarea in proyecto.tarea_set.all %}
+                   <!--
+                    Django automáticamente crea un conjunto de relaciones inversas para cada relación ForeignKey o ManyToManyField en un modelo. El nombre del conjunto inverso se forma concatenando el nombre del modelo relacionado en minúsculas y agregando "_set". En este caso, "tarea_set" es el conjunto inverso de la relación entre Proyecto y Tarea. Permite acceder a todas las tareas asociadas a un proyecto.
+                   --> 
+
+                   <!--
+                    .all(): Esto se utiliza para obtener todas las tareas relacionadas con el proyecto. El método .all() se utiliza comúnmente para acceder a todos los elementos relacionados a través de una relación ManyToMany o ForeignKey.
+                   -->
+                        <li>
+                            <strong>Título:</strong> {{ tarea.titulo }}<br>
+                            <strong>Descripción:</strong> {{ tarea.descripcion }}<br>
+                            <strong>Prioridad:</strong> {{ tarea.prioridad }}<br>
+                            <strong>Estado:</strong> {{ tarea.estados }}<br>
+                            
+                        </li>
+                        
+                    {% empty %} <!--es una etiqueta de plantilla en Django que se utiliza para manejar el caso en el que una lista o conjunto de datos está vacío. Se coloca dentro de un bucle for en una plantilla de Django y se ejecuta cuando la lista que se está iterando no contiene elementos. Su función es proporcionar un comportamiento específico en caso de que la lista esté vacía.
+                        -->
+                    
+                        <p>No hay tareas asociadas a este proyecto.</p>
+                       
                     {% endfor %}
+                </ul>
+
                 </li>
             </ul>
         </div>
