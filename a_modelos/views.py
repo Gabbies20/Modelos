@@ -9,8 +9,7 @@ def index(request):
 #Crea una URL que muestre una lista de todos los proyectos de la aplicación con sus datos correspondientes.
 def lista_proyectos(request):
     #Es conveniente utilizar select_related y prefech_related para que solamente acceda a la base de datos una vez.
-    proyectos = Proyecto.objects.select_related("usuario_creador").prefetch_related('usuario,tareas')
-    proyectos = Proyecto.objects.all()
+    proyectos = Proyecto.objects.select_related("usuario_creador").prefetch_related('usuario').all()
     return render(request, 'tareas/lista_proyectos.html',{'proyectos_mostrar':proyectos})
 
 
