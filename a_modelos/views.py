@@ -3,7 +3,8 @@ from .models import Proyecto, Tarea,AsignacionTarea
 
 # Create your views here.
 def index(request):
-    return render(request,'tareas/index.html',{})
+    proyecto = Proyecto.objects.all()
+    return render(request,'tareas/index.html',{'proyecto_id': proyecto})
 
 
 #Crea una URL que muestre una lista de todos los proyectos de la aplicación con sus datos correspondientes.
@@ -17,9 +18,9 @@ def lista_proyectos(request):
 
 #Crear una URL que muestre todas las tareas que están asociadas a un proyecto, ordenadas por fecha de creación descendente.
 def tareas_a_proyectos(request,id_proyecto):
-    tareas = Tarea.objects.select_related('usuario_creador','proyecto').prefetch_related('usuarios_asignados')
-    tareas = tareas.filter(proyecto=id_proyecto).order_by('-fecha_de_creacion').all()
-    return render (request,'tareas/tareas_asociadas.html',{'tareas_asociadas':tareas})
+    proyecto = Proyecto.objects.get(pk=id_proyecto)
+    tareas = Tarea.objects.select_related('usuario_creador','proyecto').prefetch_related('usuarios_asignados').filter(proyecto=proyecto).order_by('-fecha_de_creacion').all()
+    return render (request,'tareas/tareas_asociadas.html',{'tareas_asociadas':tareas, 'proyecto':proyecto})
 
 
 

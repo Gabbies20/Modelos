@@ -6,9 +6,20 @@
     <title>Tareas Asociadas</title>
 </head>
 <body>
-    <h1>Tareas asociadas:</h1>
-    {% for tarea in tareas_asociadas %}
-        {{tarea.titulo}}
-    {% endfor%}
+    <h1>Tareas asignadas a proyectos: </h1>
+    <h5>Proyecto: {{ proyecto.nombre }}</h5>
+
+    <h6>Tareas Asociadas:</h6>
+    <ul>
+        {% for tarea in tareas_asociadas %}
+            <li>
+                <strong>Título:</strong> {{ tarea.titulo }}<br>
+                <strong>Descripción:</strong> {{ tarea.descripcion }}<br>
+            </li>
+           <br> 
+        {% empty %}
+            <p>No hay tareas asociadas a este proyecto.</p>
+        {% endfor %}
+    </ul>
 </body>
 </html>
