@@ -27,6 +27,7 @@
                         </ul>
                     {% endfor%}
                     <h5>Tareas:</h5>
+                    <a href="{% url 'tareas_a_proyectos' id_proyecto=proyecto.id %}">Tareas asociadas a este proyecto...</a>
                 <ul>
                     {% for tarea in proyecto.tarea_set.all %}
                    <!--

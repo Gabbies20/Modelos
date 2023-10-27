@@ -6,12 +6,14 @@
     <title>Usuarios asignados a tareas</title>
 </head>
 <body>
-   {% for usuario in mostrar_usuarios %}
-        <ul>
+    <strong>Tarea: </strong>{{tareas.titulo }}
+    <ul type="circle">Usuarios:
+        <br>
+        {% for asignacion_tareas in mostrar_usuarios %}
             <li>
-                Usuarios:{{ usuario.usuario }}
+                {{ asignacion_tareas.usuario }}
             </li>
-        </ul>
    {% endfor %}
+    </ul>
 </body>
 </html>

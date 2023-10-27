@@ -68,7 +68,7 @@ class AsignacionTarea(models.Model):
     fecha_de_asignacion = models.DateTimeField(default=timezone.now)
     
     def __str__(self) -> str:
-        return self.observaciones
+        return self.tarea , self.observaciones
 
 class Comentario(models.Model):
     contenido = models.TextField()

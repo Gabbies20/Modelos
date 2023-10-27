@@ -15,6 +15,7 @@
             <li>
                 <strong>Título:</strong> {{ tarea.titulo }}<br>
                 <strong>Descripción:</strong> {{ tarea.descripcion }}<br>
+                <a href="{% url 'usuarios_a_tareas' tarea_id=tarea.id %}">Usuarios asignados...</a>
             </li>
            <br> 
         {% empty %}
