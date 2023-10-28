@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tareas por Año</title>
+</head>
+<body>
+    <h1>Tareas por Año:</h1>
+    <ul>
+        {% for tarea in tareas_years %}
+        <li>
+            <strong>Titulo:</strong> {{ tarea.titulo }}<br>
+            <strong>Estado:</strong> {{ tarea.estados }}<br>
+            <strong>Completada:</strong> {{ tarea.completada }}<br>
+            <strong>Fecha de Creación:</strong> {{ tarea.fecha_de_creacion }}<br>
+            <strong>Hora de Vencimiento:</strong> {{ tarea.hora_de_vencimiento }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Último Comentario de Usuario</title>
+</head>
+<body>
+    <h1>Último Comentario de Usuario</h1>
+    <ul>
+        {% for comentario in comentario_mostrar %}
+        <li>
+            <strong>Usuario:</strong> {{ comentario.usuario }}<br>
+            <strong>Comentario:</strong> {{ comentario.contenido }}<br>
+            <strong>Fecha de Creación:</strong> {{ comentario.fecha_de_contenido }}<br>
+            <strong>iD Tarea:</strong> {{ comentario.tarea.id }}<br>
+            <strong>Tarea:</strong> {{ comentario.tarea }}<br>
+            <strong>iD Proyecto:</strong> {{ comentario.tarea.proyecto.id }}<br>
+            <strong>Proyecto:</strong> {{ comentario.tarea.proyecto }}<br>
+        </li>
+        <br>
+        {% endfor %}
+        <!--
+                <strong>Usuario:</strong> {{ comentario_mostrar.usuario }}<br>
+            <strong>Comentario:</strong> {{ comentario_mostrar.contenido }}<br>
+            <strong>Fecha de Creación:</strong> {{ comentario_mostrar.fecha_de_contenido }}<br>
+            <strong>iD Tarea:</strong> {{ comentario_mostrar.tarea.id }}<br>
+            <strong>Tarea:</strong> {{ comentario_mostrar.tarea }}<br>
+            <strong>iD Proyecto:</strong> {{ comentario_mostrar.tarea.proyecto.id }}<br>
+            <strong>Proyecto:</strong> {{ comentario_mostrar.tarea.proyecto }}<br>
+            -->
+    </ul>
+</body>
+</html>

@@ -1,4 +1,4 @@
-#!/home/alumnado/Escritorio/Gabriela/DesarrolloWeb_Servidor/Modelos/myvenv/bin/python
+#!/home/gabriela/Desktop/Gabriela/DesarrolloWebServidor/Modelos/myvenv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

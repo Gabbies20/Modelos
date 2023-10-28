@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Proyecto, Tarea,AsignacionTarea
+from .models import Proyecto, Tarea,AsignacionTarea,Comentario
 
 # 1. Create your views here.
 def index(request):
@@ -42,13 +42,45 @@ def tareas_t_concreto(request,texto):
     tarea = tarea.filter(observaciones__icontains=texto)
     return render(request,'tareas/tareas_texto.html',{'tareas_con_texto':tarea})
 
+  
+  
+  
+  
+  
+  
+  
+  
+    
+# 6. Crear una URL que muestre todos las tareas que se han creado entre dos años y el estado sea “Completada”.
+def tareas_years(request,year_inicio,year_fin):
+    #No lo pasamos por parametro y asignamos directamente el valor:
+    #ano_inicio = 2000
+    #ano_fin = 2005
+    tarea = Tarea.objects.all()
+    tarea = tarea.filter(estados='COM').filter(fecha_de_creacion__year__range=[year_inicio, year_fin])
+    #El filtro con una sola línea y usando los operadores gt y lt:
+    #tareas_entre_anos = Tarea.objects.filter(estados='COM', fecha_de_creacion__year__gt=ano_inicio, fecha_de_creacion__year__lt=ano_fin)
+    return render(request,'tareas/tareas_years.html',{'tareas_years':tarea})
+
+
+
+
+
+
+
+# 7. Crear una URL que obtenga el último usuario que ha comentado en una tarea de un proyecto en concreto.
+def ultimo_usuario(request, id_proyecto):
+    comentario = Comentario.objects.select_related('usuario','tarea').all()
+    comentario = comentario.order_by('-fecha_de_contenido').filter(tarea__proyecto= id_proyecto)
+    #__ Con estos doble guiones accedo a un campo de mi modelo tarea.
+    
+    return render(request,'tareas/comentario_ultimo_usuario.html',{'comentario_mostrar':comentario})
     
     
-    
-    
-    
-    
-    
+# 8. Crear una URL que obtenga todos los comentarios de una tarea que empiecen por la palabra que se pase en la URL y que el año del comentario sea uno en concreto.
+def comentarios_palabra_year(request,palabra,year):
+    pass
+
     
     
     
