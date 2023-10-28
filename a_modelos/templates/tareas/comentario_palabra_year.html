@@ -6,7 +6,7 @@
     <title>Aplicación de Tareas</title>
 </head>
 <body>
-    <h1>Comentario que contiene una palabra {{ palabra }} y un año {{ year }} en especifico:</h1>
+    <h4>Comentario que contiene la palabra <i>{{ palabra }}</i> y el año <i>{{ year }}</i> :</h4>
         <ul>
             {% for comentario in comentario_mostrar%}
             <li><strong>Tarea: </strong>{{ comentario.tarea.titulo}}

@@ -81,7 +81,14 @@ def ultimo_usuario(request, id_proyecto):
 def comentarios_palabra_year(request,id_tarea,palabra,year):
     tarea = Tarea.objects.get(id=id_tarea)
     comentario = Comentario.objects.select_related('usuario','tarea').filter(contenido__contains=palabra,tarea=id_tarea,fecha_de_contenido__year=year)
-    return render(request,'tareas/comentario_palabra_year.html',{'comentario_mostrar':comentario})
+    
+    #En mi plantilla quiero mostrar los parametros que envio en la url, por lo que voy a crear un diccionario que lo contenga:
+    contexto = {
+        'comentario_mostrar':comentario,
+        'palabra':palabra,
+        'year': year
+    }
+    return render(request,'tareas/comentario_palabra_year.html',contexto)
 
     
     
