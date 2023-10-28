@@ -78,8 +78,10 @@ def ultimo_usuario(request, id_proyecto):
     
     
 # 8. Crear una URL que obtenga todos los comentarios de una tarea que empiecen por la palabra que se pase en la URL y que el año del comentario sea uno en concreto.
-def comentarios_palabra_year(request,palabra,year):
-    pass
+def comentarios_palabra_year(request,id_tarea,palabra,year):
+    tarea = Tarea.objects.get(id=id_tarea)
+    comentario = Comentario.objects.select_related('usuario','tarea').filter(contenido__contains=palabra,tarea=id_tarea,fecha_de_contenido__year=year)
+    return render(request,'tareas/comentario_palabra_year.html',{'comentario_mostrar':comentario})
 
     
     

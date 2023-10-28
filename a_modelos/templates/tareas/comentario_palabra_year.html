@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Tareas</title>
+</head>
+<body>
+    <h1>Comentario que contiene una palabra {{ palabra }} y un año {{ year }} en especifico:</h1>
+        <ul>
+            {% for comentario in comentario_mostrar%}
+            <li><strong>Tarea: </strong>{{ comentario.tarea.titulo}}
+            <br>
+            ID Tarea: {{comentario.tarea.id}}<br>
+            Comentario: {{comentario.contenido}}<br>
+            Fecha: {{comentario.fecha_de_contenido}}<br>
+            </li>
+            {% endfor%}
+        </ul>
+        
+    <br>
+   </body>
+</html>
