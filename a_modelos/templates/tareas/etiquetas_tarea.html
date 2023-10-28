@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aplicación de Tareas</title>
+</head>
+<body>
+    <h1>Etiqueta</h1>
+    <ul>
+        {% for etiqueta in etiqueta_mostrar%}
+            <!--Tarea: {{tarea.titulo}} de est aforma no he podido acceder al campo titulo de tarea. La razón es que tengo una relación de etiquetas con tareas a través de 'prefech_related'.Cuando se usa eso, se puede acceder a las tareas directamente desde el objeto de etiqueta en el bucle.-->
+            <!-- -->
+            {% for tarea in etiqueta.tarea.all %}
+                <li>Título: {{ tarea.titulo }}</li>
+                <li>ID Tarea: {{ tarea.id }} </li>
+                Etiqueta: {{etiqueta.nombre}}<br>
+                <br>
+            {% endfor%}
+           Etiqueta: {{etiqueta.nombre}}<br>
+            <br>
+            <br>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>

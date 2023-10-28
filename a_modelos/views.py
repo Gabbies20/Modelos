@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Proyecto, Tarea,AsignacionTarea,Comentario
+from .models import Proyecto, Tarea,AsignacionTarea,Comentario,Etiqueta,Usuario
 
 # 1. Create your views here.
 def index(request):
@@ -91,7 +91,18 @@ def comentarios_palabra_year(request,id_tarea,palabra,year):
     return render(request,'tareas/comentario_palabra_year.html',contexto)
 
     
+# 9. Crear una URL que obtenga todas las etiquetas que se han usado en todas las tareas de un proyecto.
     
+def etiquetas_en_tarea(request):
+    #etiqueta = Etiqueta.objects.prefetch_related('tarea')
+    etiqueta = Etiqueta.objects.all()
+    return render(request, 'tareas/etiquetas_tarea.html',{'etiqueta_mostrar':etiqueta})
+
+
+# 10. Crear una URL que muestre todos los usuarios que no están asignados a una tarea.
+def usuarios_no_asignados(request):
+    usuarios_no_asignados = Usuario.objects.exclude(tarea__usuarios_asignados__isnull=False)
+    return render(request, 'tareas/usuarios_no_asignados.html', {'usuarios_no_asignados': usuarios_no_asignados})
     
     
     
