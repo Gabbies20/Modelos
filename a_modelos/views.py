@@ -104,9 +104,20 @@ def usuarios_no_asignados(request):
     usuarios_no_asignados = Usuario.objects.exclude(tarea__usuarios_asignados__isnull=False)
     return render(request, 'tareas/usuarios_no_asignados.html', {'usuarios_no_asignados': usuarios_no_asignados})
     
+# 11. Crear una página de Error personalizada para cada uno de los 4 tipos de errores que pueden ocurrir en nuestra Web.
+def mi_error_404(request,exception=None):
+    return render(request,'errores/404.html',None,None,404)
     
     
-    
+def mi_error_400(request,exception=None):
+    return render(request,'errores/400.html',None,None,400)
+
+
+def mi_error_403(request,exception=None):
+    return render(request,'errores/403.html',None,None,403)
+
+def mi_error_500(request,exception=None):
+    return render(request,'errores/400.html',None,None,500)
     
     
     
