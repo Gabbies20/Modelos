@@ -1,6 +1,5 @@
 from django.urls import path
 from .import views
-from django.views.defaults import page_not_found
 
 
 
@@ -16,5 +15,5 @@ urlpatterns = [
     path('comentario/<int:id_proyecto>/',views.ultimo_usuario,name='ultimo_usuario'),
     path('comentario-palabra/<int:id_tarea>/<str:palabra>/<int:year>/',views.comentarios_palabra_year,name='comentario_palabra'),
     path('etiquetas/',views.etiquetas_en_tarea,name='etiquetas'),
-    path('usuarios-no-asignados/',views.usuarios_no_asignados,name='usuarios_no_asignados')
+    path('usuarios-no-asignados/<int:tarea_id>/',views.usuarios_no_asignados,name='usuarios_no_asignados')
 ]

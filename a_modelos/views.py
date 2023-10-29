@@ -72,8 +72,8 @@ def tareas_years(request,year_inicio,year_fin):
 def ultimo_usuario(request, id_proyecto):
     comentario = Comentario.objects.select_related('usuario','tarea').all()
     comentario = comentario.order_by('-fecha_de_contenido').filter(tarea__proyecto= id_proyecto)
+    comenentario = comentario.first()
     #__ Con estos doble guiones accedo a un campo de mi modelo tarea.
-    
     return render(request,'tareas/comentario_ultimo_usuario.html',{'comentario_mostrar':comentario})
     
     
@@ -84,7 +84,6 @@ def comentarios_palabra_year(request,id_tarea,palabra,year):
     
     #En mi plantilla quiero mostrar los parametros que envio en la url, por lo que voy a crear un diccionario que lo contenga:
     contexto = {
-        'comentario_mostrar':comentario,
         'palabra':palabra,
         'year': year
     }
@@ -100,10 +99,18 @@ def etiquetas_en_tarea(request):
 
 
 # 10. Crear una URL que muestre todos los usuarios que no están asignados a una tarea.
-def usuarios_no_asignados(request):
-    usuarios_no_asignados = Usuario.objects.exclude(tarea__usuarios_asignados__isnull=False)
+def usuarios_no_asignados(request, tarea_id):
+    # Obtén la tarea específica
+    tarea = Tarea.objects.get(id=tarea_id)
+    # Obtén todos los usuarios que no están asignados a la tarea específica
+    usuarios_no_asignados = Usuario.objects.exclude(asignaciontarea__tarea=tarea)
     return render(request, 'tareas/usuarios_no_asignados.html', {'usuarios_no_asignados': usuarios_no_asignados})
-    
+
+
+
+
+
+
 # 11. Crear una página de Error personalizada para cada uno de los 4 tipos de errores que pueden ocurrir en nuestra Web.
 from django.shortcuts import render
 
