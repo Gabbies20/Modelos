@@ -89,10 +89,9 @@ def comentarios_palabra_year(request,id_tarea,palabra,year):
 
     
 # 9. Crear una URL que obtenga todas las etiquetas que se han usado en todas las tareas de un proyecto.
-    
-def etiquetas_en_tarea(request):
-    #etiqueta = Etiqueta.objects.prefetch_related('tarea')
-    etiqueta = Etiqueta.objects.all()
+def etiquetas_en_tarea(request,id_proyecto):
+    etiqueta = Etiqueta.objects.prefetch_related('tarea')
+    etiqueta = Etiqueta.objects.filter(tarea__proyecto=id_proyecto).distinct()
     return render(request, 'tareas/etiquetas_tarea.html',{'etiqueta_mostrar':etiqueta})
 
 
@@ -103,8 +102,6 @@ def usuarios_no_asignados(request, tarea_id):
     # Obtén todos los usuarios que no están asignados a la tarea específica
     usuarios_no_asignados = Usuario.objects.exclude(asignaciontarea__tarea=tarea)
     return render(request, 'tareas/usuarios_no_asignados.html', {'usuarios_no_asignados': usuarios_no_asignados})
-
-
 
 
 

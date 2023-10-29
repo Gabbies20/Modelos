@@ -14,6 +14,6 @@ urlpatterns = [
     path('tareas-years/<int:year_inicio>/<int:year_fin>/',views.tareas_years,name='tareas_years'),
     path('comentario/<int:id_proyecto>/',views.ultimo_usuario,name='ultimo_usuario'),
     path('comentario-palabra/<int:id_tarea>/<str:palabra>/<int:year>/',views.comentarios_palabra_year,name='comentario_palabra'),
-    path('etiquetas/',views.etiquetas_en_tarea,name='etiquetas'),
+    path('etiquetas/<int:id_proyecto>/',views.etiquetas_en_tarea,name='etiquetas'),
     path('usuarios-no-asignados/<int:tarea_id>/',views.usuarios_no_asignados,name='usuarios_no_asignados')
 ]
