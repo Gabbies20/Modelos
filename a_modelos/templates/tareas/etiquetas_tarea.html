@@ -6,22 +6,21 @@
     <title>aplicación de Tareas</title>
 </head>
 <body>
-    <h1>Etiqueta</h1>
+    <h1>Etiquetas y Tareas en el Proyecto</h1>
+    <p>Proyecto: {{ proyecto.nombre }}</p>
     <ul>
-        {% for etiqueta in etiqueta_mostrar%}
-            <!--Tarea: {{tarea.titulo}} de esta forma no he podido acceder al campo titulo de tarea. La razón es que tengo una relación de etiquetas con tareas a través de 'prefech_related'.Cuando se usa eso, se puede acceder a las tareas directamente desde el objeto de etiqueta en el bucle.-->
-            <!-- -->
-            {% for tarea in etiqueta.tarea.all %}
-                <li>Título: {{ tarea.titulo }}</li>
-                <li>ID Tarea: {{ tarea.id }} </li>
-                Etiqueta: {{etiqueta.nombre}}<br>
-                <br>
-            {% endfor%}
-           Etiqueta: {{etiqueta.nombre}}<br>
-            <br>
-            <br>
+        {% for etiqueta in etiqueta_mostrar %}
+            <li>Etiqueta: {{ etiqueta.nombre }}</li>
+            <ul>
+                {% for tarea in etiqueta.tarea.all %}
+                    <li>Título: {{ tarea.titulo }}</li>
+                    <li>ID Tarea: {{ tarea.id }}</li>
+                {% endfor %}
+            </ul>
+        {% empty %}
+            <p>No se han asociado etiquetas a las tareas de este proyecto.</p>
         {% endfor %}
     </ul>
-    
 </body>
 </html>
+

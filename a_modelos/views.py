@@ -90,9 +90,10 @@ def comentarios_palabra_year(request,id_tarea,palabra,year):
     
 # 9. Crear una URL que obtenga todas las etiquetas que se han usado en todas las tareas de un proyecto.
 def etiquetas_en_tarea(request,id_proyecto):
+    proyecto = Proyecto.objects.get(id=id_proyecto)
     etiqueta = Etiqueta.objects.prefetch_related('tarea')
-    etiqueta = Etiqueta.objects.filter(tarea__proyecto=id_proyecto).distinct()
-    return render(request, 'tareas/etiquetas_tarea.html',{'etiqueta_mostrar':etiqueta})
+    etiqueta = Etiqueta.objects.filter(tarea__proyecto=id_proyecto)
+    return render(request, 'tareas/etiquetas_tarea.html',{'etiqueta_mostrar':etiqueta,'proyecto':proyecto})
 
 
 # 10. Crear una URL que muestre todos los usuarios que no están asignados a una tarea.
