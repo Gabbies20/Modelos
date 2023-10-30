@@ -6,19 +6,24 @@
     <title>aplicación de Tareas</title>
 </head>
 <body>
-    <h1>Enlace de todas las urls:</h1>
-    <a href=" {% url 'lista_proyectos' %}">Lista de todos los proyectos</a>
+    <h1>Página de inicio:</h1>
+    <p>URLS paar acceder a todos los sitios:</p>
+    <a href=" {% url 'lista_proyectos' %}">2.URL que muestre una lista de todos los proyectos de la aplicación con sus datos correspondientes</a>
     <br>
-    <a href=" {% url 'tareas_a_proyectos' id_proyecto=7 %}">Lista de tareas asociadas a un proyecto</a>
+    <a href=" {% url 'tareas_a_proyectos' id_proyecto=1 %}">3.URL que muestre todas las tareas que están asociadas a un proyecto, ordenadas por fecha de creación descendente.</a>
     <br>
-    <a href=" {% url 'tareas_years' 2000 2005 %}">Las tareas que se han creado entre dos años </a>
+    <a href="{% url 'usuarios_a_tareas' 13 %}">4. URL que muestra todos los usuarios que están asignados a una tarea ordenados por la fecha de asignación de la tarea de forma ascendente</a>
     <br>
-    <a href=" {% url 'ultimo_usuario' id_proyecto=13 %}">Comentarios usuario.. </a>
+    <a href=" {% url 'tareas_texto' 'time' %}">5.Crear una URL que muestre todas las tareas que tengan un texto en concreto en las observaciones a la hora de asignarlas a un usuario. </a>
     <br>
-    <a href=" {% url 'comentario_palabra' 9 'reduce' 2023 %}">Comentario que contenga una palabra y sea de un año concreto </a>
+    <a href=" {% url 'tareas_years' 2000 2005 %}">6. URL que muestre todos los proyectos que se han creado entre dos fechas y el estado sea “Completada”.</a>
     <br>
-    <a href=" {% url 'etiquetas' 6 %}">Etiquetas...</a>
+    <a href=" {% url 'ultimo_usuario' id_proyecto=13 %}">7. URL que obtenga el último usuario que ha comentado en una tarea de un proyecto en concreto.</a>
     <br>
-    <a href=" {% url 'usuarios_no_asignados' 4 %}">Usuarios no asignados a tarea...</a>
+    <a href=" {% url 'comentario_palabra' 9 'reduce' 2023 %}">8. URL que obtenga todos los comentarios de una tarea que empiecen por la palabra que se pase en la URL y que el año del comentario sea uno en concreto.</a>
+    <br>
+    <a href=" {% url 'etiquetas' 6 %}">9.URL que obtenga todas las etiquetas que se han usado en todas las tareas de un proyecto.</a>
+    <br>
+    <a href=" {% url 'usuarios_no_asignados' 4 %}">10.URL que muestre todos los usuarios que no están asignados a una tarea.</a>
 </body>
 </html>

@@ -45,12 +45,6 @@ def tareas_t_concreto(request,texto):
   
   
   
-  
-  
-  
-  
-  
-    
 # 6. Crear una URL que muestre todos las tareas que se han creado entre dos años y el estado sea “Completada”.
 def tareas_years(request,year_inicio,year_fin):
     #No lo pasamos por parametro y asignamos directamente el valor:
@@ -66,14 +60,15 @@ def tareas_years(request,year_inicio,year_fin):
 
 
 
-
-
 # 7. Crear una URL que obtenga el último usuario que ha comentado en una tarea de un proyecto en concreto.
 def ultimo_usuario(request, id_proyecto):
     comentario = Comentario.objects.select_related('usuario','tarea').all()
-    comentario = comentario.order_by('-fecha_de_contenido').filter(tarea__proyecto= id_proyecto).first()
-    #__ Con estos doble guiones accedo a un campo de mi modelo tarea.
+    comentario = comentario.filter(tarea__proyecto= id_proyecto).order_by('-fecha_de_contenido').first()
+    #__ Con estos doble guiones accedo a un campo de mi modelo tarea(en este caso a proyecto)
     return render(request,'tareas/comentario_ultimo_usuario.html',{'comentario_mostrar':comentario})
+    
+    
+    
     
 # 8. Crear una URL que obtenga todos los comentarios de una tarea que empiecen por la palabra que se pase en la URL y que el año del comentario sea uno en concreto.
 def comentarios_palabra_year(request,id_tarea,palabra,year):
@@ -103,8 +98,6 @@ def usuarios_no_asignados(request, tarea_id):
     # Obtén todos los usuarios que no están asignados a la tarea específica
     usuarios_no_asignados = Usuario.objects.exclude(asignaciontarea__tarea=tarea)
     return render(request, 'tareas/usuarios_no_asignados.html', {'usuarios_no_asignados': usuarios_no_asignados})
-
-
 
 
 # 11. Crear una página de Error personalizada para cada uno de los 4 tipos de errores que pueden ocurrir en nuestra Web.
