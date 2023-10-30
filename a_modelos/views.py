@@ -63,7 +63,7 @@ def tareas_years(request,year_inicio,year_fin):
 # 7. Crear una URL que obtenga el último usuario que ha comentado en una tarea de un proyecto en concreto.
 def ultimo_usuario(request, id_proyecto):
     comentario = Comentario.objects.select_related('usuario','tarea').all()
-    comentario = comentario.filter(tarea__proyecto= id_proyecto).order_by('-fecha_de_contenido').first()
+    comentario = comentario.filter(tarea__proyecto= id_proyecto).order_by('-fecha_de_contenido')[:1]
     #__ Con estos doble guiones accedo a un campo de mi modelo tarea(en este caso a proyecto)
     return render(request,'tareas/comentario_ultimo_usuario.html',{'comentario_mostrar':comentario})
     
