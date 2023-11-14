@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tareas Asociadas</title>
-</head>
-<body>
+{% extends 'tareas/base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/estilo.css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+{% block contenido%}
     <h1>Tareas asignadas a proyectos: </h1>
     <h5>Proyecto: {{ proyecto.nombre }}</h5>
 
@@ -22,5 +23,7 @@
             <p>No hay tareas asociadas a este proyecto.</p>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+{% endblock%}
+
+

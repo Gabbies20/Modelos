@@ -1,61 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Proyectos</title>
-</head>
-<body>
-    <h1>Mis proyectos:</h1>
-    {% for proyecto in proyectos_mostrar %}
-        <div>
-            <ul>
-                <li type="circle">
-                    <h3>PROYECTO</h3>
-                    <h5>Nombre:</h5>{{ proyecto.nombre}}
-                    <h5>Descripción:</h5>{{ proyecto.descripcion }}
-                    <h5>Duración estimada:</h5>{{ proyecto.duracion_estimada }}
-                    <h5>Fecha de inicio:</h5>{{ proyecto.fecha_de_inicio }}
-                    <h5>Fecha de finalización:</h5>{{ proyecto.fecha_de_finalizacion }}
-                    <h5>Usuario creador:</h5>{{ proyecto.usuario_creador }}
-                    <h5>Usuarios</h5>
-                    {% for usuario in proyecto.usuario.all %}
-                        <ul>
-                            <li>
-                                {{ usuario.nombre }}
-                            </li>
-                        </ul>
-                    {% endfor%}
-                    <h5>Tareas:</h5>
-                    <a href="{% url 'tareas_a_proyectos' id_proyecto=proyecto.id %}">Tareas asociadas a este proyecto...</a>
-                <ul>
-                    {% for tarea in proyecto.tarea_set.all %}
-                   <!--
-                    Django automáticamente crea un conjunto de relaciones inversas para cada relación ForeignKey o ManyToManyField en un modelo. El nombre del conjunto inverso se forma concatenando el nombre del modelo relacionado en minúsculas y agregando "_set". En este caso, "tarea_set" es el conjunto inverso de la relación entre Proyecto y Tarea. Permite acceder a todas las tareas asociadas a un proyecto.
-                   --> 
+{% extends 'tareas/base.html' %}
 
-                   <!--
-                    .all(): Esto se utiliza para obtener todas las tareas relacionadas con el proyecto. El método .all() se utiliza comúnmente para acceder a todos los elementos relacionados a través de una relación ManyToMany o ForeignKey.
-                   -->
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/estilo.css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+
+<h1>Mis proyectos:</h1>
+{% block contenido %}
+{% for proyecto in proyectos_mostrar %}
+    <div class="contenido">
+        <ul>
+            <li type="circle">
+                <h3>PROYECTO</h3>
+                <h5>Nombre:</h5>{{ proyecto.nombre}}
+                <h5>Descripción:</h5>{{ proyecto.descripcion }}
+                <h5>Duración estimada:</h5>{{ proyecto.duracion_estimada }}
+                <h5>Fecha de inicio:</h5>{{ proyecto.fecha_de_inicio }}
+                <h5>Fecha de finalización:</h5>{{ proyecto.fecha_de_finalizacion }}
+                <h5>Usuario creador:</h5>{{ proyecto.usuario_creador.nombre }}
+                <h5>Usuarios</h5>
+                {% for usuario in proyecto.colaboradores.all %}
+                    <ul>
+                        <li>
+                            {{ usuario.nombre }}
+                        </li>
+                    </ul>
+                {% endfor%}
+                <h5>Tareas:</h5>
+                <a href="{% url 'tareas_a_proyectos' id_proyecto=proyecto.id %}">Tareas asociadas a este proyecto...</a>
+                <ul>
+                    {# Prefetch: proyecto_de_tareas #}
+                    {% for tarea in proyecto.tarea_set.all %}
                         <li>
                             <strong>Título:</strong> {{ tarea.titulo }}<br>
                             <strong>Descripción:</strong> {{ tarea.descripcion }}<br>
                             <strong>Prioridad:</strong> {{ tarea.prioridad }}<br>
                             <strong>Estado:</strong> {{ tarea.estados }}<br>
-                            
                         </li>
-                        
-                    {% empty %} <!--es una etiqueta de plantilla en Django que se utiliza para manejar el caso en el que una lista o conjunto de datos está vacío. Se coloca dentro de un bucle for en una plantilla de Django y se ejecuta cuando la lista que se está iterando no contiene elementos. Su función es proporcionar un comportamiento específico en caso de que la lista esté vacía.
-                        -->
-                    
+                    {% empty %}
                         <p>No hay tareas asociadas a este proyecto.</p>
-                       
                     {% endfor %}
                 </ul>
+            </li>
+        </ul>
+    </div>
+{% endfor %}
+{% endblock %}
 
-                </li>
-            </ul>
-        </div>
-    {% endfor%}
-</body>
-</html>
+
+
+
+
+
+    

@@ -48,7 +48,7 @@ class Tarea(models.Model):
     usuarios_asignados = models.ManyToManyField(Usuario,
                                                 through='AsignacionTarea',
                                                 related_name="usuarios_asignados")
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, related_name='proyecto_de_tareas')
        
        
     def __str__(self) -> str:
