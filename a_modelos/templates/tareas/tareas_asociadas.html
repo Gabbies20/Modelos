@@ -1,12 +1,12 @@
-{% extends 'tareas/base.html' %}
+{% extends 'tareas/index.html' %}
 
 {% block head %}
+{% load static%}
     <link rel="stylesheet" href="../../static/css/estilo.css">
 {% endblock %}
 
-{% block header %}
-{% endblock %}
-{% block contenido%}
+
+{% block content%}
     <h1>Tareas asignadas a proyectos: </h1>
     <h5>Proyecto: {{ proyecto.nombre }}</h5>
 

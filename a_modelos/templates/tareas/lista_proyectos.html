@@ -1,4 +1,4 @@
-{% extends 'tareas/base.html' %}
+{% extends 'tareas/index.html' %}
 
 {% block head %}
     <link rel="stylesheet" href="../../static/css/estilo.css">
@@ -9,7 +9,7 @@
 
 
 <h1>Mis proyectos:</h1>
-{% block contenido %}
+{% block content %}
 {% for proyecto in proyectos_mostrar %}
     <div class="contenido">
         <ul>

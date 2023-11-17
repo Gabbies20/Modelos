@@ -25,4 +25,5 @@ handler500 = 'a_modelos.views.mi_error_500'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('a_modelos.urls')),
+    path('__debug__/',include('debug_toolbar.urls'))
 ]
